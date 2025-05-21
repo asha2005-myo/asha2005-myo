@@ -1,0 +1,82 @@
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: dashboard.php");
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Asha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="asha.png">
+    <style>
+        body {
+            background: #0f0f0f;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 250px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #5a57ff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            color: #fff;
+            background: #5a57ff;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .buttons a:hover {
+            background: #7d7aff;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 28px; }
+            p { font-size: 16px; }
+            .buttons a { padding: 10px 20px; font-size: 16px; }
+            .logo { width: 200px; }
+        }
+    </style>
+</head>
+<body>
+    <img src="asha.png" alt="Asha Logo" class="logo">
+    <h1>Welcome to Asha Platform</h1>
+    <p>Your trusted service for social media orders and top-ups</p>
+    <div class="buttons">
+        <a href="login.php">Login</a>
+        <a href="register.php">Register</a>
+    </div>
+</body>
+</html>
