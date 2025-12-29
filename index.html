@@ -211,19 +211,19 @@ loadTONPrice();
 /* Auto refresh every 30 seconds */
 setInterval(loadTONPrice, 30000);
 
-       // Define your fixed packages
-const starPackages = [
-    {stars: 50, price: 3300},
-    {stars: 75, price: 5000},
-    {stars: 100, price: 6600},
-    {stars: 125, price: 8300},
-    {stars: 150, price: 9900},
-    {stars: 175, price: 11600},
-    {stars: 200, price: 13200},
-    {stars: 250, price: 16500},
-    {stars: 300, price: 19800},
-    {stars: 500, price: 33000},
-    {stars: 1000, price: 66000}
+       // Fixed package prices
+const packages = [
+    {stars:50, price:3300},
+    {stars:75, price:5000},
+    {stars:100, price:6600},
+    {stars:125, price:8300},
+    {stars:150, price:9900},
+    {stars:175, price:11600},
+    {stars:200, price:13200},
+    {stars:250, price:16500},
+    {stars:300, price:19800},
+    {stars:500, price:33000},
+    {stars:1000, price:66000}
 ];
 
 function calculateStarPrice() {
@@ -231,17 +231,17 @@ function calculateStarPrice() {
     let total = 0;
 
     if(input && input > 0){
-        // Find the smallest package that >= input
-        for(let i=0; i<starPackages.length; i++){
-            if(input <= starPackages[i].stars){
-                total = starPackages[i].price;
+        // Find the **smallest package that is >= input**
+        for(let i=0;i<packages.length;i++){
+            if(input <= packages[i].stars){
+                total = packages[i].price;
                 break;
             }
         }
-        // If input exceeds largest package, use per-unit price of last package
-        if(input > starPackages[starPackages.length-1].stars){
-            const lastPkg = starPackages[starPackages.length-1];
-            const unitPrice = lastPkg.price / lastPkg.stars;
+        // If input > largest package, calculate linearly per-unit of last package
+        if(input > packages[packages.length-1].stars){
+            const last = packages[packages.length-1];
+            const unitPrice = last.price / last.stars;
             total = Math.ceil(input * unitPrice);
         }
     }
