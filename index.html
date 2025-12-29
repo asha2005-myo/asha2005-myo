@@ -216,25 +216,20 @@ const unitPrice = 3300; // 50 Stars = 3300 MMK
 
 function calculateStarPrice() {
     let input = parseInt(document.getElementById("starInput").value);
+
     if (!input || input < 50) input = 50; // Minimum 50 Stars
 
     // Round input to nearest 50
-    const roundedStars = Math.ceil(input / 50) * 50;
+    const roundedStars = Math.round(input / 50) * 50;
 
-    // Base total
-    let total = (roundedStars / 50) * 3300;
-
-    // Check the condition: (input / 25) is odd
-    if (Math.floor(input / 25) % 2 === 1) {
-        total += 50; // add 50 MMK
-    }
+    // Calculate total price
+    const total = (roundedStars / unitStars) * unitPrice;
 
     document.getElementById("starTotal").innerText = total.toLocaleString() + " MMK";
 }
 
 // Live update on input
 document.getElementById("starInput").addEventListener("input", calculateStarPrice);
-
         
     </script>
 
