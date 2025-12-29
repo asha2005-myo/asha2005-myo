@@ -1,125 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>B & T SHOP</title>
+    <title>Asha's SHOP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #0d0f14;
+            color: #eaeaea;
         }
 
         .container {
-            max-width: 700px;
-            margin: auto;
-            background: #ffffff;
-            padding: 20px;
+            max-width: 75%;
+            margin: 20px auto;
+            background: #141824;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .6);
         }
 
         h1 {
             text-align: center;
-            color: #222;
+            color: #fff;
+            letter-spacing: 1px;
         }
 
         .subtitle {
             text-align: center;
-            color: #666;
-            margin-bottom: 20px;
+            color: #9aa4c7;
+            margin-bottom: 25px;
+            font-size: 14px;
         }
 
         .section {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .section h2 {
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-            font-size: 20px;
+            font-size: 17px;
+            margin-bottom: 12px;
+            color: #5ddcff;
+            border-left: 4px solid #5ddcff;
+            padding-left: 10px;
         }
 
         .item {
             display: flex;
             justify-content: space-between;
-            padding: 10px;
-            border-bottom: 1px dashed #ccc;
-            font-size: 16px;
+            padding: 11px 8px;
+            border-bottom: 1px solid #242a3b;
+            font-size: 15px;
         }
 
         .item span {
-            font-weight: bold;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .price-note {
+            text-align: center;
+            font-size: 14px;
+            color: #cfd6ff;
+            margin-bottom: 14px;
         }
 
         .pay-box {
-            background: #f8f8f8;
+            background: linear-gradient(135deg, #1c2235, #151a2b);
+            text-align: center;
             padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #cfd6ff;
+        }
+
+        .copy-btn {
+            margin-top: 10px;
+            padding: 7px 16px;
+            font-size: 13px;
+            border: none;
             border-radius: 6px;
+            background: linear-gradient(135deg, #ffb347, #ffcc33);
+            color: #222;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
         }
 
         .btn {
             display: block;
-            width: 100%;
+            width: auto;
             text-align: center;
-            padding: 12px;
-            margin-top: 10px;
-            background: #0088cc;
+            padding: 14px;
+            margin-top: 14px;
+            background: linear-gradient(135deg, #0088cc, #00c6ff);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+            border-radius: 8px;
+            font-weight: 600;
         }
 
         .btn.admin {
-            background: #28a745;
+            background: linear-gradient(135deg, #28a745, #57d163);
         }
 
         footer {
             text-align: center;
-            color: #999;
-            font-size: 14px;
-            margin-top: 20px;
+            color: #6f78a8;
+            font-size: 13px;
+            margin-top: 30px;
         }
     </style>
 </head>
+
 <body>
+    <div class="container">
 
-<div class="container">
+        <h1>Asha's SHOP</h1>
+        <p class="subtitle">Fast & Reliable Digital Services</p>
 
-    <h1>B & T SHOP</h1>
-    <p class="subtitle">Fast & Reliable Digital Services</p>
+        <div class="section">
+            <div class="price-note">
+                💲 Current TON Price : <b id="tonPrice">Loading...</b>
+            </div>
 
-    <div class="section">
-        <h2>TON Coin Price</h2>
-        <div class="item">1 TON <span>3500 MMK</span></div>
-        <div class="item">5 TON <span>17500 MMK</span></div>
-        <div class="item">10 TON <span>35000 MMK</span></div>
-    </div>
-
-    <div class="section">
-        <h2>Telegram Services</h2>
-        <div class="item">100 Stars <span>6000 MMK</span></div>
-        <div class="item">500 Stars <span>28000 MMK</span></div>
-        <div class="item">Premium 1 Month <span>20000 MMK</span></div>
-    </div>
-
-    <div class="section">
-        <h2>Payment</h2>
-        <div class="pay-box">
-            📱 KPay / Wave<br>
-            📞 09-XXXXXXXX
+            <h2>📱 TON Price</h2>
+            <div class="item">0.1 TON <span>700 MMK</span></div>
+            <div class="item">1 TON <span>6,800 MMK</span></div>
+            <div class="item">10 TON <span>67,000 MMK</span></div>
         </div>
+
+        <div class="section">
+            <h2>🌟 Star Price</h2>
+            <div class="item">50 Stars <span>3,300 MMK</span></div>
+            <div class="item">75 Stars <span>5,000 MMK</span></div>
+            <div class="item">100 Stars <span>6,600 MMK</span></div>
+            <div class="item">125 Stars <span>8,300 MMK</span></div>
+            <div class="item">150 Stars <span>9,900 MMK</span></div>
+            <div class="item">175 Stars <span>11,600 MMK</span></div>
+            <div class="item">200 Stars <span>13,200 MMK</span></div>
+            <div class="item">250 Stars <span>16,500 MMK</span></div>
+            <div class="item">300 Stars <span>19,800 MMK</span></div>
+            <div class="item">500 Stars <span>33,000 MMK</span></div>
+            <div class="item">1000 Stars <span>66,000 MMK</span></div>
+        </div>
+
+        <div class="section">
+            <h2>⭐ Premium Price</h2>
+            <div class="item">🎁 3 Months <span>50,000 MMK</span></div>
+            <div class="item">🎁 6 Months <span>68,000 MMK</span></div>
+            <div class="item">🎁 1 Year <span>122,000 MMK</span></div>
+        </div>
+
+        <div class="section">
+            <h2>💳 Payment</h2>
+            <div class="pay-box">
+                📱 KPay / Wave (+100 MMK)<br> 📞 <span id="phone">09-769211585</span><br>
+                <button class="copy-btn" onclick="copyPhone()">📋 Copy Phone</button>
+            </div>
+        </div>
+
+        <a href="https://t.me/Ton_Star_Resell" class="btn">📩 Resell Group</a>
+        <a href="https://t.me/AshaRen20" class="btn admin">🔐 Admin</a>
+
+        <footer>© 2025 Asha's Shop</footer>
+
     </div>
 
-    <a href="https://t.me/yourusername" class="btn">📩 Contact on Telegram</a>
-    <a href="#" class="btn admin">🔐 Admin</a>
+    <script>
+        function copyPhone() {
+            const phone = document.getElementById("phone").innerText;
+            navigator.clipboard.writeText(phone).then(() => {
+                alert("📞 Phone number copied!");
+            });
+        }
 
-    <footer>
-        © 2025 B & T Shop
-    </footer>
-
-</div>
+        fetch("https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd")
+            .then(res => res.json())
+            .then(data => {
+                const price = data["the-open-network"].usd;
+                document.getElementById("tonPrice").innerText = "$" + price;
+            })
+            .catch(() => {
+                document.getElementById("tonPrice").innerText = "Unavailable";
+            });
+    </script>
 
 </body>
+
 </html>
