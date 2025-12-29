@@ -211,7 +211,7 @@ loadTONPrice();
 /* Auto refresh every 30 seconds */
 setInterval(loadTONPrice, 30000);
 
-        const unitStars = 50;
+       const unitStars = 50;
 const unitPrice = 3300; // 50 Stars = 3300 MMK
 
 function calculateStarPrice() {
@@ -220,6 +220,9 @@ function calculateStarPrice() {
 
     if(input && input > 0){
         total = (input / unitStars) * unitPrice;
+
+        // Round to nearest 50 MMK
+        total = Math.round(total / 50) * 50;
     }
 
     document.getElementById("starTotal").innerText = total.toLocaleString() + " MMK";
@@ -227,6 +230,7 @@ function calculateStarPrice() {
 
 // Live update on input
 document.getElementById("starInput").addEventListener("input", calculateStarPrice);
+        
     </script>
 
 </body>
