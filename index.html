@@ -152,11 +152,11 @@
             <div class="item">1000 Stars <span>66,000 MMK</span></div>
         </div>
 
-                <div class="section">
+               <div class="section">
     <h2>💡 Star Calculator</h2>
     <div class="item">
         Number of Stars: 
-        <input type="number" id="starInput" placeholder="Enter Stars" min="50" style="padding:6px 10px; border-radius:6px; border:none; width:100px;">
+        <input type="number" id="starInput" placeholder="Enter Stars" min="1" style="padding:6px 10px; border-radius:6px; border:none; width:100px;">
     </div>
     <div class="item">
         Total Price: <span id="starTotal">0 MMK</span>
@@ -211,24 +211,44 @@ loadTONPrice();
 /* Auto refresh every 30 seconds */
 setInterval(loadTONPrice, 30000);
 
-       const unitStars = 50;
-const unitPrice = 3300; // 50 Stars = 3300 MMK
+       // Define your fixed packages
+const starPackages = [
+    {stars: 50, price: 3300},
+    {stars: 75, price: 5000},
+    {stars: 100, price: 6600},
+    {stars: 125, price: 8300},
+    {stars: 150, price: 9900},
+    {stars: 175, price: 11600},
+    {stars: 200, price: 13200},
+    {stars: 250, price: 16500},
+    {stars: 300, price: 19800},
+    {stars: 500, price: 33000},
+    {stars: 1000, price: 66000}
+];
 
 function calculateStarPrice() {
-    const input = document.getElementById("starInput").value;
+    const input = parseInt(document.getElementById("starInput").value);
     let total = 0;
 
     if(input && input > 0){
-        total = (input / unitStars) * unitPrice;
-
-        // Round to nearest 50 MMK
-        total = Math.round(total / 50) * 50;
+        // Find the smallest package that >= input
+        for(let i=0; i<starPackages.length; i++){
+            if(input <= starPackages[i].stars){
+                total = starPackages[i].price;
+                break;
+            }
+        }
+        // If input exceeds largest package, use per-unit price of last package
+        if(input > starPackages[starPackages.length-1].stars){
+            const lastPkg = starPackages[starPackages.length-1];
+            const unitPrice = lastPkg.price / lastPkg.stars;
+            total = Math.ceil(input * unitPrice);
+        }
     }
 
     document.getElementById("starTotal").innerText = total.toLocaleString() + " MMK";
 }
 
-// Live update on input
 document.getElementById("starInput").addEventListener("input", calculateStarPrice);
         
     </script>
