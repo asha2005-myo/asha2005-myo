@@ -211,49 +211,7 @@ loadTONPrice();
 /* Auto refresh every 30 seconds */
 setInterval(loadTONPrice, 30000);
 
-       const unitStars = 50;
-const unitPrice = 3300;
-
-// Packages you sell
-const packages = [50, 75, 100, 125, 150, 175, 200, 250, 300, 500, 1000];
-const packagePrices = {
-    50: 3300,
-    75: 5000,
-    100: 6600,
-    125: 8300,
-    150: 9900,
-    175: 11600,
-    200: 13200,
-    250: 16500,
-    300: 19800,
-    500: 33000,
-    1000: 66000
-};
-
-function calculateStarPrice() {
-    const input = parseInt(document.getElementById("starInput").value);
-    let total = 0;
-
-    if(input && input > 0){
-        // Find the next package >= input
-        for(let i=0; i<packages.length; i++){
-            if(input <= packages[i]){
-                total = packagePrices[packages[i]];
-                break;
-            }
-        }
-        // If input exceeds largest package, calculate linearly
-        if(input > packages[packages.length-1]){
-            const lastPkg = packages[packages.length-1];
-            const unit = packagePrices[lastPkg] / lastPkg;
-            total = Math.ceil(input * unit);
-        }
-    }
-
-    document.getElementById("starTotal").innerText = total.toLocaleString() + " MMK";
-}
-
-document.getElementById("starInput").addEventListener("input", calculateStarPrice);
+      t.me/nft/XmasStocking-168467
         
     </script>
 
