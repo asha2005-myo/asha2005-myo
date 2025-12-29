@@ -182,15 +182,23 @@
             });
         }
 
-        fetch("https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd")
-            .then(res => res.json())
-            .then(data => {
-                const price = data["the-open-network"].usd;
-                document.getElementById("tonPrice").innerText = "$" + price;
-            })
-            .catch(() => {
-                document.getElementById("tonPrice").innerText = "Unavailable";
-            });
+       function loadTONPrice() {
+    fetch("https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd")
+        .then(res => res.json())
+        .then(data => {
+            const price = data["the-open-network"].usd;
+            document.getElementById("tonPrice").innerText = "$" + price.toFixed(4);
+        })
+        .catch(() => {
+            document.getElementById("tonPrice").innerText = "Unavailable";
+        });
+}
+
+/* Load immediately when page opens */
+loadTONPrice();
+
+/* Auto refresh every 30 seconds */
+setInterval(loadTONPrice, 30000);
     </script>
 
 </body>
