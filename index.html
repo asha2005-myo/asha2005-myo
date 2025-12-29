@@ -211,7 +211,8 @@ loadTONPrice();
 /* Auto refresh every 30 seconds */
 setInterval(loadTONPrice, 30000);
 
-      const unitStars = 50;
+      <script>
+const unitStars = 50;
 const unitPrice = 3300; // 50 Stars = 3300 MMK
 
 function calculateStarPrice() {
@@ -227,6 +228,7 @@ function calculateStarPrice() {
 
 // Live update on input
 document.getElementById("starInput").addEventListener("input", calculateStarPrice);
+</script>
         
     </script>
 
