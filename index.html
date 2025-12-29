@@ -1,105 +1,125 @@
-<?php
-session_start();
-
-if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php");
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Asha</title>
+    <title>B & T SHOP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="IGtw1XEC-1pGTkp7p5L8Hp35Qg31tcBKOP1Lk2KUt4k" />
-    <link rel="icon" type="image/png" href="asha.png">
-    <meta name="description" content="Get real growth for your social media accounts with Social Booster. Buy likes, followers, views, and more from ashamm.shop.">
-    <!-- Structured data for Google rich results -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Asha Platform",
-      "url": "https://ashamm.shop",
-      "potentialAction": [
-        {
-          "@type": "SearchAction",
-          "target": "https://socialboost.z246014-0w10am.ls02.zwhhosting.com/login.php",
-          "query-input": "required name=login"
-        },
-        {
-          "@type": "SearchAction",
-          "target": "https://socialboost.z246014-0w10am.ls02.zwhhosting.com/register.php",
-          "query-input": "required name=register"
-        }
-      ]
-    }
-    </script>
+
     <style>
         body {
-            background: #0f0f0f;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 90vh;
             margin: 0;
-            padding: 20px;
-            text-align: center;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
         }
 
-        .logo {
-            width: 250px;
-            height: auto;
-            margin-bottom: 20px;
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
         }
 
         h1 {
-            font-size: 36px;
-            color: #5a57ff;
+            text-align: center;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
             margin-bottom: 20px;
         }
 
-        p {
-            font-size: 18px;
-            color: #ccc;
-            margin-bottom: 40px;
+        .section {
+            margin-bottom: 25px;
         }
 
-        .buttons a {
-            text-decoration: none;
-            color: #fff;
-            background: #5a57ff;
-            padding: 12px 24px;
-            margin: 10px;
-            border-radius: 8px;
-            transition: background 0.3s ease;
+        .section h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px dashed #ccc;
+            font-size: 16px;
+        }
+
+        .item span {
             font-weight: bold;
-            display: inline-block;
         }
 
-        .buttons a:hover {
-            background: #7d7aff;
+        .pay-box {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 6px;
         }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 28px; }
-            p { font-size: 16px; }
-            .buttons a { padding: 10px 20px; font-size: 16px; }
-            .logo { width: 200px; }
+        .btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            margin-top: 10px;
+            background: #0088cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn.admin {
+            background: #28a745;
+        }
+
+        footer {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <img src="asha.png" alt="Asha Logo" class="logo">
-    <h1>Welcome to Asha Platform</h1>
-    <p>Your trusted service for social media orders and top-ups</p>
-    <div class="buttons">
-        <a href="https://socialboost.z246014-0w10am.ls02.zwhhosting.com/login.php">Login</a>
-        <a href="https://socialboost.z246014-0w10am.ls02.zwhhosting.com/register.php">Register</a>
+
+<div class="container">
+
+    <h1>B & T SHOP</h1>
+    <p class="subtitle">Fast & Reliable Digital Services</p>
+
+    <div class="section">
+        <h2>TON Coin Price</h2>
+        <div class="item">1 TON <span>3500 MMK</span></div>
+        <div class="item">5 TON <span>17500 MMK</span></div>
+        <div class="item">10 TON <span>35000 MMK</span></div>
     </div>
+
+    <div class="section">
+        <h2>Telegram Services</h2>
+        <div class="item">100 Stars <span>6000 MMK</span></div>
+        <div class="item">500 Stars <span>28000 MMK</span></div>
+        <div class="item">Premium 1 Month <span>20000 MMK</span></div>
+    </div>
+
+    <div class="section">
+        <h2>Payment</h2>
+        <div class="pay-box">
+            📱 KPay / Wave<br>
+            📞 09-XXXXXXXX
+        </div>
+    </div>
+
+    <a href="https://t.me/yourusername" class="btn">📩 Contact on Telegram</a>
+    <a href="#" class="btn admin">🔐 Admin</a>
+
+    <footer>
+        © 2025 B & T Shop
+    </footer>
+
+</div>
+
 </body>
 </html>
