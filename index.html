@@ -132,9 +132,9 @@
             </div>
 
             <h2>TON Price</h2>
-            <div class="item">0.1 TON <span>700 MMK</span></div>
-            <div class="item">1 TON <span>7,500 MMK</span></div>
-            <div class="item">10 TON <span>74,000 MMK</span></div>
+<div class="item">0.1 TON <span id="ton_0_1">Loading...</span></div>
+<div class="item">1 TON <span id="ton_1">Loading...</span></div>
+<div class="item">10 TON <span id="ton_10">Loading...</span></div>
         </div>
 
         <div class="section">
@@ -193,22 +193,39 @@
             });
         }
 
-    function loadTONPrice() {
+   const MMK_RATE = 4010;
+const PROFIT = 500;
+
+function loadTONPrice() {
     fetch("https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd")
         .then(res => res.json())
         .then(data => {
-            const price = data["the-open-network"].usd;
-            document.getElementById("tonPrice").innerText = "$" + price.toFixed(2); // 3 decimal places
+            const tonUSD = data["the-open-network"].usd;
+
+            // 1 TON MMK price
+            let tonMMK = (tonUSD * MMK_RATE) + PROFIT;
+
+            // Round to nearest 50
+            tonMMK = Math.round(tonMMK / 50) * 50;
+
+            document.getElementById("tonPrice").innerText = "$" + tonUSD.toFixed(2);
+
+            document.getElementById("ton_1").innerText =
+                tonMMK.toLocaleString() + " MMK";
+
+            document.getElementById("ton_0_1").innerText =
+                Math.round((tonMMK * 0.1) / 50) * 50 + " MMK";
+
+            document.getElementById("ton_10").innerText =
+                Math.round((tonMMK * 10) / 50) * 50 + " MMK";
         })
         .catch(() => {
             document.getElementById("tonPrice").innerText = "Unavailable";
         });
 }
 
-/* Load immediately */
+// Load now & refresh every 30 sec
 loadTONPrice();
-
-/* Auto refresh every 30 seconds */
 setInterval(loadTONPrice, 30000);
 
 const unitStars = 50;
