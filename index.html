@@ -217,7 +217,7 @@ function loadTONPrice() {
     (Math.ceil((tonMMK * 0.1) / 50) * 50 + 50) + " MMK";    
 
             document.getElementById("ton_10").innerText =
-                Math.round((tonMMK * 10) / 50) * 50 + " MMK";
+                Math.ceil((tonMMK * 10) / 50) * 50 + " MMK";
         })
         .catch(() => {
             document.getElementById("tonPrice").innerText = "Unavailable";
