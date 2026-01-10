@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Asha's SHOP</title>
@@ -14,7 +13,6 @@
             background: #0d0f14;
             color: #eaeaea;
         }
-
         .container {
             max-width: 75%;
             margin: 20px auto;
@@ -23,24 +21,19 @@
             border-radius: 14px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, .6);
         }
-
         h1 {
             text-align: center;
             color: #fff;
-            letter-spacing: 1px;
         }
-
         .subtitle {
             text-align: center;
             color: #9aa4c7;
             margin-bottom: 25px;
             font-size: 14px;
         }
-
         .section {
             margin-bottom: 30px;
         }
-
         .section h2 {
             font-size: 17px;
             margin-bottom: 12px;
@@ -48,7 +41,6 @@
             border-left: 4px solid #5ddcff;
             padding-left: 10px;
         }
-
         .item {
             display: flex;
             justify-content: space-between;
@@ -56,19 +48,12 @@
             border-bottom: 1px solid #242a3b;
             font-size: 15px;
         }
-
-        .item span {
-            font-weight: 600;
-            color: #fff;
-        }
-
         .price-note {
             text-align: center;
             font-size: 14px;
             color: #cfd6ff;
             margin-bottom: 14px;
         }
-
         .pay-box {
             background: linear-gradient(135deg, #1c2235, #151a2b);
             text-align: center;
@@ -77,7 +62,6 @@
             font-size: 14px;
             color: #cfd6ff;
         }
-
         .copy-btn {
             margin-top: 10px;
             padding: 7px 16px;
@@ -89,15 +73,8 @@
             font-weight: 600;
             cursor: pointer;
         }
-
-        .copy-btn:active {
-            transform: scale(0.95);
-        }
-
         .btn {
             display: block;
-            width: auto;
-            text-align: center;
             padding: 14px;
             margin-top: 14px;
             background: linear-gradient(135deg, #0088cc, #00c6ff);
@@ -105,96 +82,95 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
+            text-align: center;
         }
-
         .btn.admin {
             background: linear-gradient(135deg, #28a745, #57d163);
         }
-
         footer {
             text-align: center;
             color: #6f78a8;
             font-size: 13px;
             margin-top: 30px;
         }
+        input {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: none;
+            width: 100px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
 
-        <h1>Asha's SHOP</h1>
-        <p class="subtitle">Fast & Reliable Digital Services</p>
+    <h1>Asha's SHOP</h1>
+    <p class="subtitle">Fast & Reliable Digital Services</p>
 
-        <div class="section">
-            <div class="price-note">
-                💲 Current TON Price : <b id="tonPrice">Loading...</b>
-            </div>
-
-            <h2>TON Price</h2>
-<div class="item">0.1 TON <span id="ton_0_1">Loading...</span></div>
-<div class="item">1 TON <span id="ton_1">Loading...</span></div>
-<div class="item">10 TON <span id="ton_10">Loading...</span></div>
+    <div class="section">
+        <div class="price-note">
+            💲 Current TON Price: <b id="tonPrice">Loading...</b>
         </div>
 
-        <div class="section">
-            <h2>Star Price</h2>
-            <div class="item">50 Stars <span>3,500 MMK</span></div>
-            <div class="item">75 Stars <span>5,200 MMK</span></div>
-            <div class="item">100 Stars <span>7,000 MMK</span></div>
-            <div class="item">125 Stars <span>8,700 MMK</span></div>
-            <div class="item">150 Stars <span>10,500 MMK</span></div>
-            <div class="item">175 Stars <span>12,200 MMK</span></div>
-            <div class="item">200 Stars <span>14,000 MMK</span></div>
-            <div class="item">250 Stars <span>17,500 MMK</span></div>
-            <div class="item">300 Stars <span>21,000 MMK</span></div>
-            <div class="item">500 Stars <span>35,000 MMK</span></div>
-            <div class="item">1000 Stars <span>70,000 MMK</span></div>
-        </div>
+        <h2>TON Price</h2>
+        <div class="item">0.1 TON <span id="ton_0_1">Loading...</span></div>
+        <div class="item">1 TON <span id="ton_1">Loading...</span></div>
+        <div class="item">10 TON <span id="ton_10">Loading...</span></div>
+    </div>
 
-               <div class="section">
-    <h2>💡 Star Calculator</h2>
-    <div class="item">
-        Number of Stars: 
-        <input type="number" id="starInput" placeholder="Enter Stars" min="50" style="padding:6px 10px; border-radius:6px; border:none; width:100px;">
+    <div class="section">
+        <h2>Star Price</h2>
+        <div class="item">50 Stars <span>3,500 MMK</span></div>
+        <div class="item">75 Stars <span>5,200 MMK</span></div>
+        <div class="item">100 Stars <span>7,000 MMK</span></div>
+        <div class="item">125 Stars <span>8,700 MMK</span></div>
+        <div class="item">150 Stars <span>10,500 MMK</span></div>
+        <div class="item">175 Stars <span>12,200 MMK</span></div>
+        <div class="item">200 Stars <span>14,000 MMK</span></div>
+        <div class="item">250 Stars <span>17,500 MMK</span></div>
+        <div class="item">300 Stars <span>21,000 MMK</span></div>
+        <div class="item">500 Stars <span>35,000 MMK</span></div>
+        <div class="item">1000 Stars <span>70,000 MMK</span></div>
     </div>
-    <div class="item">
-        Total Price: <span id="starTotal">0 MMK</span>
+
+    <div class="section">
+        <h2>💡 Star Calculator</h2>
+        <div class="item">Number of Stars: <input type="number" id="starInput" min="50"></div>
+        <div class="item">Total Price: <span id="starTotal">0 MMK</span></div>
     </div>
+
+    <div class="section">
+        <h2>💳 Payment</h2>
+        <div class="pay-box">
+            Myo Thiha Ko<br>
+            📱 KBZ Pay / Wave Pay / AYA Pay<br>
+            📞 <span id="phone">09-769211585</span><br>
+            <button class="copy-btn" onclick="copyPhone()">📋 Copy Phone</button>
+        </div>
+    </div>
+
+    <a href="https://t.me/Ton_Star_Resell" class="btn">📩 Stars Resell Group</a>
+    <a href="https://t.me/AshaRen20" class="btn admin">🔐 Admin</a>
+
+    <footer>© 2025 Asha's Shop</footer>
 </div>
-        
-        <div class="section">
-            <h2>Premium Price</h2>
-            <div class="item">🎁 3 Months <span>50,000 MMK</span></div>
-            <div class="item">🎁 6 Months <span>68,000 MMK</span></div>
-            <div class="item">🎁 1 Year <span>122,000 MMK</span></div>
-        </div>
 
-        <div class="section">
-            <h2>💳 Payment</h2>
-            <div class="pay-box">
-               Myo Thiha Ko <br> 📱 KBZ Pay / Wave Pay (+100 MMK) / AYA Pay <br> 📞 <span id="phone">09-769211585</span><br>
-                <button class="copy-btn" onclick="copyPhone()">📋 Copy Phone</button>
-            </div>
-        </div>
-
-        <a href="https://t.me/Ton_Star_Resell" class="btn">📩 Stars Resell Group</a>
-        <a href="https://t.me/AshaRen20" class="btn admin">🔐 Admin</a>
-
-        <footer>© 2025 Asha's Shop</footer>
-
-    </div>
-
-    <script>
-        function copyPhone() {
-            const phone = document.getElementById("phone").innerText;
-            navigator.clipboard.writeText(phone).then(() => {
-                alert("📞 Phone number copied!");
-            });
-        }
-
-   const MMK_RATE = 4010;
+<script>
+const MMK_RATE = 4010;
 const PROFIT = 500;
+
+// ALWAYS UP TO 50
+function upTo50(value) {
+    return Math.ceil(value / 50) * 50;
+}
+
+function copyPhone() {
+    navigator.clipboard.writeText(
+        document.getElementById("phone").innerText
+    );
+    alert("📞 Phone number copied!");
+}
 
 function loadTONPrice() {
     fetch("https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd")
@@ -202,58 +178,45 @@ function loadTONPrice() {
         .then(data => {
             const tonUSD = data["the-open-network"].usd;
 
-            // 1 TON MMK price
-            let tonMMK = (tonUSD * MMK_RATE) + PROFIT;
+            let tonMMK = upTo50((tonUSD * MMK_RATE) + PROFIT);
 
-            // Round to nearest 50
-            tonMMK = Math.round(tonMMK / 50) * 50;
-
-            document.getElementById("tonPrice").innerText = "$" + tonUSD.toFixed(2);
+            document.getElementById("tonPrice").innerText =
+                "$" + tonUSD.toFixed(2);
 
             document.getElementById("ton_1").innerText =
                 tonMMK.toLocaleString() + " MMK";
 
             document.getElementById("ton_0_1").innerText =
-    (Math.ceil((tonMMK * 0.1) / 50) * 50 + 50) + " MMK";    
+                upTo50(tonMMK * 0.1).toLocaleString() + " MMK";
 
             document.getElementById("ton_10").innerText =
-                (Math.ceil((tonMMK * 10) / 50) * 50 - 100 ) + " MMK";
+                upTo50(tonMMK * 10).toLocaleString() + " MMK";
         })
         .catch(() => {
             document.getElementById("tonPrice").innerText = "Unavailable";
         });
 }
 
-// Load now & refresh every 30 sec
+// auto refresh
 loadTONPrice();
 setInterval(loadTONPrice, 30000);
 
+// Star calculator
 const unitStars = 50;
-const unitPrice = 3500; // 50 Stars = 3500 MMK
+const unitPrice = 3500;
 
 function calculateStarPrice() {
     let input = parseInt(document.getElementById("starInput").value);
+    if (!input || input < 50) input = 50;
 
-    if (!input || input < 50) input = 50; // Minimum 50 Stars
-
-    // Calculate base total
-    let total = (input / unitStars) * unitPrice;
-
-    // Check if (input / 25) is odd
-    if ((input / 25) % 2 === 1) {
-        total -= 50; // add 50 MMK
-    }
-
-    // Round total MMK to nearest 50
-    total = Math.round(total / 50) * 50;
-
-    document.getElementById("starTotal").innerText = total.toLocaleString() + " MMK";
+    let total = upTo50((input / unitStars) * unitPrice);
+    document.getElementById("starTotal").innerText =
+        total.toLocaleString() + " MMK";
 }
 
-// Live update on input
-document.getElementById("starInput").addEventListener("input", calculateStarPrice);
-    </script>
+document.getElementById("starInput")
+    .addEventListener("input", calculateStarPrice);
+</script>
 
 </body>
-
 </html>
