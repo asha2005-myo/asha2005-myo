@@ -164,11 +164,11 @@
 </div>
         
         <div class="section">
-            <h2>Premium Price</h2>
-            <div class="item">🎁 3 Months <span>50,000 MMK</span></div>
-            <div class="item">🎁 6 Months <span>68,000 MMK</span></div>
-            <div class="item">🎁 1 Year <span>122,000 MMK</span></div>
-        </div>
+    <h2>Premium Price</h2>
+    <div class="item">🎁 3 Months <span id="pre_3m">Loading...</span></div>
+    <div class="item">🎁 6 Months <span id="pre_6m">Loading...</span></div>
+    <div class="item">🎁 1 Year <span id="pre_12m">Loading...</span></div>
+</div>
 
         <div class="section">
             <h2>💳 Payment</h2>
@@ -193,8 +193,19 @@
             });
         }
 
-   const MMK_RATE = 4010;
+const MMK_RATE = 4010;
 const PROFIT = 500;
+
+// Premium USD prices
+const PREMIUM_USD = {
+    m3: 11.99,
+    m6: 15.99,
+    m12: 28.99
+};
+
+function round50(value) {
+    return Math.round(value / 50) * 50;
+}
 
 function loadTONPrice() {
     fetch("https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd")
@@ -202,29 +213,32 @@ function loadTONPrice() {
         .then(data => {
             const tonUSD = data["the-open-network"].usd;
 
-            // 1 TON MMK price
+            // TON MMK with profit
             let tonMMK = (tonUSD * MMK_RATE) + PROFIT;
+            tonMMK = round50(tonMMK);
 
-            // Round to nearest 50
-            tonMMK = Math.round(tonMMK / 50) * 50;
-
+            // Show TON info
             document.getElementById("tonPrice").innerText = "$" + tonUSD.toFixed(2);
-
-            document.getElementById("ton_1").innerText =
-                tonMMK.toLocaleString() + " MMK";
-
+            document.getElementById("ton_1").innerText = tonMMK.toLocaleString() + " MMK";
             document.getElementById("ton_0_1").innerText =
-                (Math.round((tonMMK * 0.1) / 50) * 50 + 50) + " MMK";
-
+                round50(tonMMK * 0.1 + 50).toLocaleString() + " MMK";
             document.getElementById("ton_10").innerText =
-                Math.round((tonMMK * 10) / 50) * 50 + " MMK";
+                round50(tonMMK * 10).toLocaleString() + " MMK";
+
+            // 🔥 PREMIUM CALCULATION
+            const pre3 = round50((PREMIUM_USD.m3 / tonUSD) * tonMMK);
+            const pre6 = round50((PREMIUM_USD.m6 / tonUSD) * tonMMK);
+            const pre12 = round50((PREMIUM_USD.m12 / tonUSD) * tonMMK);
+
+            document.getElementById("pre_3m").innerText = pre3.toLocaleString() + " MMK";
+            document.getElementById("pre_6m").innerText = pre6.toLocaleString() + " MMK";
+            document.getElementById("pre_12m").innerText = pre12.toLocaleString() + " MMK";
         })
         .catch(() => {
             document.getElementById("tonPrice").innerText = "Unavailable";
         });
 }
 
-// Load now & refresh every 30 sec
 loadTONPrice();
 setInterval(loadTONPrice, 30000);
 
