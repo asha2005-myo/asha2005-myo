@@ -164,11 +164,11 @@
 </div>
         
         <div class="section">
-            <h2>Premium Price</h2>
-            <div class="item">🎁 3 Months <span>50,000 MMK</span></div>
-            <div class="item">🎁 6 Months <span>68,000 MMK</span></div>
-            <div class="item">🎁 1 Year <span>122,000 MMK</span></div>
-        </div>
+    <h2>Premium Price (Buy with TON)</h2>
+    <div class="item">🎁 3 Months <span id="p_3m">Loading...</span></div>
+    <div class="item">🎁 6 Months <span id="p_6m">Loading...</span></div>
+    <div class="item">🎁 12 Months <span id="p_12m">Loading...</span></div>
+</div>
 
         <div class="section">
             <h2>💳 Payment</h2>
@@ -195,17 +195,19 @@
 
    const MMK_RATE = 4010;
 const PROFIT = 500;
-
+const PREMIUM_USD = {
+    "3m": 11.99,
+    "6m": 15.99,
+    "12m": 28.99
+};
 function loadTONPrice() {
     fetch("https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd")
         .then(res => res.json())
         .then(data => {
             const tonUSD = data["the-open-network"].usd;
 
-            // 1 TON MMK price
+            // TON → MMK
             let tonMMK = (tonUSD * MMK_RATE) + PROFIT;
-
-            // Round to nearest 50
             tonMMK = Math.round(tonMMK / 50) * 50;
 
             document.getElementById("tonPrice").innerText = "$" + tonUSD.toFixed(2);
@@ -218,12 +220,29 @@ function loadTONPrice() {
 
             document.getElementById("ton_10").innerText =
                 Math.round((tonMMK * 10) / 50) * 50 + " MMK";
+
+            // ===== Premium Calculation =====
+            calcPremium("p_3m", PREMIUM_USD["3m"], tonUSD);
+            calcPremium("p_6m", PREMIUM_USD["6m"], tonUSD);
+            calcPremium("p_12m", PREMIUM_USD["12m"], tonUSD);
         })
         .catch(() => {
             document.getElementById("tonPrice").innerText = "Unavailable";
         });
 }
+function calcPremium(elementId, usdPrice, tonUSD) {
+    // USD → TON
+    const tonAmount = usdPrice / tonUSD;
 
+    // TON → MMK
+    let mmk = (tonAmount * tonUSD * MMK_RATE) + PROFIT;
+
+    // Round to nearest 50
+    mmk = Math.round(mmk / 50) * 50;
+
+    document.getElementById(elementId).innerText =
+        mmk.toLocaleString() + " MMK";
+}
 // Load now & refresh every 30 sec
 loadTONPrice();
 setInterval(loadTONPrice, 30000);
