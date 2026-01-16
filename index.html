@@ -227,9 +227,9 @@ function loadTONPrice() {
                 round50(tonMMK * 10).toLocaleString() + " MMK";
 
             // 🔥 PREMIUM CALCULATION
-            const pre3 = round50((PREMIUM_USD.m3 / tonUSD) * tonMMK) + 1000;
-            const pre6 = round50((PREMIUM_USD.m6 / tonUSD) * tonMMK) + 1000;
-            const pre12 = round50((PREMIUM_USD.m12 / tonUSD) * tonMMK) + 1000;
+            const pre3 = round50((PREMIUM_USD.m3 / tonUSD) * tonMMK) + 2000;
+            const pre6 = round50((PREMIUM_USD.m6 / tonUSD) * tonMMK) + 2000;
+            const pre12 = round50((PREMIUM_USD.m12 / tonUSD) * tonMMK) + 2000;
 
             document.getElementById("pre_3m").innerText = pre3.toLocaleString() + " MMK";
             document.getElementById("pre_6m").innerText = pre6.toLocaleString() + " MMK";
