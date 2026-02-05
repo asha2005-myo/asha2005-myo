@@ -203,53 +203,52 @@
             });
         }
 
-        // Diamond API
-        const apiUrl = "https://z246014-c718oi.ls03.zwhhosting.com/api_diamonds.php";
+  const apiUrl = "https://z246014-c718oi.ls03.zwhhosting.com/api_diamonds.php";
 
-        async function loadDiamondPrices() {
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+async function loadDiamondPrices() {
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-                const container = document.getElementById('price-table');
-                container.innerHTML = '';
+        // build tables by category
+        const container = document.getElementById('price-table');
+        container.innerHTML = '';
 
-                for (const category in data) {
-                    const catDiv = document.createElement('div');
-                    catDiv.classList.add('category');
+        for (const category in data) {
+            const catDiv = document.createElement('div');
+            catDiv.classList.add('category');
 
-                    const title = document.createElement('h3');
-                    title.textContent = category;
-                    catDiv.appendChild(title);
+            const title = document.createElement('h3');
+            title.textContent = category;
+            catDiv.appendChild(title);
 
-                    const table = document.createElement('table');
-                    const header = document.createElement('tr');
-                    header.innerHTML = `<th>Name</th><th>Reseller Price</th><th>Seller Price</th>`;
-                    table.appendChild(header);
+            const table = document.createElement('table');
+            const header = document.createElement('tr');
+            header.innerHTML = `<th>Name</th><th>Reseller Price</th><th>Seller Price</th>`;
+            table.appendChild(header);
 
-                    data[category].forEach(item => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `<td>${item.name}</td>
-                                         <td>${item.reseller_price ? item.reseller_price.toLocaleString()+' MMK' : '-'}</td>
-                                         <td>${item.seller_price ? item.seller_price.toLocaleString()+' MMK' : '-'}</td>`;
-                        table.appendChild(row);
-                    });
+            data[category].forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${item.name}</td>
+                                 <td>${item.reseller_price.toLocaleString()} MMK</td>
+                                 <td>${item.seller_price.toLocaleString()} MMK</td>`;
+                table.appendChild(row);
+            });
 
-                    catDiv.appendChild(table);
-                    container.appendChild(catDiv);
-                }
-
-            } catch (err) {
-                console.error("Failed to load diamond prices:", err);
-                document.getElementById('price-table').textContent = 'Failed to load prices';
-            }
+            catDiv.appendChild(table);
+            container.appendChild(catDiv);
         }
 
-        // Load prices on page load & auto-refresh every 60s
-        window.addEventListener('DOMContentLoaded', () => {
-            loadDiamondPrices();
-            setInterval(loadDiamondPrices, 60000);
-        });
+    } catch (err) {
+        console.error("Failed to load diamond prices:", err);
+        document.getElementById('price-table').textContent = 'Failed to load prices';
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    loadDiamondPrices();
+    setInterval(loadDiamondPrices, 60000); // refresh every 60s
+});
     </script>
 </body>
 
