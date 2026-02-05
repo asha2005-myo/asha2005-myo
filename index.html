@@ -6,7 +6,6 @@
     <title>Asha's SHOP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="asha.png">
-
     <style>
         body {
             margin: 0;
@@ -121,6 +120,21 @@
         .alert{
             text-align: center;
         }
+
+        #diamond-prices {
+    max-width: 900px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+#diamond-prices h2 {
+    text-align: center;
+}
+.category {
+    margin-bottom: 30px;
+}
+table th {
+    background: #f5f5f5;
+}
     </style>
 </head>
 
@@ -171,6 +185,11 @@
     <div class="item">🎁 3 Months <span id="pre_3m">Loading...</span></div>
     <div class="item">🎁 6 Months <span id="pre_6m">Loading...</span></div>
     <div class="item">🎁 1 Year <span id="pre_12m">Loading...</span></div>
+</div>
+
+        <div id="diamond-prices">
+  <h2>MLBB Diamond Prices</h2>
+  <div id="price-table"></div>
 </div>
 
         <div class="section">
@@ -269,6 +288,55 @@ function calculateStarPrice() {
 
 // Live update on input
 document.getElementById("starInput").addEventListener("input", calculateStarPrice);
+
+        const apiUrl = "https://z246014-c718oi.ls03.zwhhosting.com/api_diamonds.php"; // Replace with your API URL
+
+async function loadDiamondPrices() {
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        const container = document.getElementById('price-table');
+        container.innerHTML = '';
+
+        for (const category in data) {
+            const catDiv = document.createElement('div');
+            catDiv.classList.add('category');
+
+            const title = document.createElement('h3');
+            title.textContent = category;
+            catDiv.appendChild(title);
+
+            const table = document.createElement('table');
+            table.style.width = '100%';
+            table.style.borderCollapse = 'collapse';
+
+            const header = document.createElement('tr');
+            header.innerHTML = `<th style="border:1px solid #ccc; padding:5px;">Name</th>
+                                <th style="border:1px solid #ccc; padding:5px;">Reseller Price</th>
+                                <th style="border:1px solid #ccc; padding:5px;">Seller Price</th>`;
+            table.appendChild(header);
+
+            data[category].forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td style="border:1px solid #ccc; padding:5px;">${item.name}</td>
+                                 <td style="border:1px solid #ccc; padding:5px;">${item.reseller_price ? item.reseller_price.toLocaleString()+' MMK' : '-'}</td>
+                                 <td style="border:1px solid #ccc; padding:5px;">${item.seller_price ? item.seller_price.toLocaleString()+' MMK' : '-'}</td>`;
+                table.appendChild(row);
+            });
+
+            catDiv.appendChild(table);
+            container.appendChild(catDiv);
+        }
+
+    } catch (err) {
+        console.error("Failed to load diamond prices:", err);
+        document.getElementById('price-table').textContent = 'Failed to load prices';
+    }
+}
+
+// Load prices on page load
+window.onload = loadDiamondPrices;
     </script>
 
 </body>
