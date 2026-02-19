@@ -158,10 +158,9 @@ table th {
  .spin {
     position: fixed;
     bottom: 20px;
-    left: 20px;
-    width: 55px;
-    height: 55px;
-    background: linear-gradient(135deg, #0088cc, #00c6ff);
+    right: 20px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -169,18 +168,30 @@ table th {
     box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     cursor: pointer;
     z-index: 999;
+    overflow: hidden;
+}
 
-    /* Rotation */
+/* Rotating background */
+.spin::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0088cc, #00c6ff, #0088cc);
     animation: rotate 4s linear infinite;
 }
 
+/* Keep SVG fixed */
+.spin svg {
+    position: relative;
+    z-index: 2;
+    fill: white;
+}
+
 @keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
             
     </style>
