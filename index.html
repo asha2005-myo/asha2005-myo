@@ -61,9 +61,10 @@
             color: #fff;
         }
 
-        .item::hover{
-            scale: 0.5;
-        }
+        .item:hover {
+    transform: scale(0.95); /* shrink slightly on hover */
+    transition: transform 0.2s ease; /* smooth effect */
+}
         
         .price-note {
             text-align: center;
