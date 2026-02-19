@@ -155,10 +155,10 @@ table th {
         scale: 1;
     }
 }
-        .spin {
+ .spin {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     width: 55px;
     height: 55px;
     background: linear-gradient(135deg, #0088cc, #00c6ff);
@@ -168,12 +168,19 @@ table th {
     justify-content: center;
     box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     cursor: pointer;
-    transition: all 0.3s ease;
     z-index: 999;
+
+    /* Rotation */
+    animation: rotate 4s linear infinite;
 }
 
-.spin:hover {
-    transform: scale(1.1);
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
             
     </style>
