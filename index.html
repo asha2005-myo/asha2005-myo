@@ -199,6 +199,7 @@ table th {
 
 <body>
     <div class="container">
+        <div id="sticker1" style="width:150px;height:150px;"></div>
         <h1>Asha's SHOP</h1>
         <p class="subtitle">Fast & Reliable Digital Services</p>
 
@@ -269,6 +270,14 @@ table th {
     </div>
 
     <script>
+
+         lottie.loadAnimation({
+            container: document.getElementById("sticker1"),
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            path: "TgSticker_09eac552.json"
+        });
         function copyPhone() {
             const phone = document.getElementById("phone").innerText;
             navigator.clipboard.writeText(phone).then(() => {
