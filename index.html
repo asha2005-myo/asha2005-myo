@@ -7,212 +7,369 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="asha.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
+
     <style>
+         :root {
+            color-scheme: dark;
+            --bg: #090c16;
+            --surface: rgba(16, 22, 38, 0.95);
+            --border: rgba(87, 192, 255, 0.16);
+            --text: #e8eff9;
+            --muted: #9dadce;
+            --accent: #57c8ff;
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #0d0f14;
-            color: #eaeaea;
+            min-height: 100vh;
+            font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at top, rgba(64, 158, 255, 0.14), transparent 24%), linear-gradient(180deg, #02040b 0%, #09111f 45%, #0d1220 100%);
         }
-
+        
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.18;
+            pointer-events: none;
+        }
+        
         .container {
-            max-width: 75%;
-            margin: 20px auto;
-            background: #141824;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            max-width: 1000px;
+            margin: 32px auto 42px;
+            padding: 32px;
+            background: rgba(9, 13, 24, 0.96);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            left: -60px;
+            top: -40px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(67, 167, 255, 0.12);
+            filter: blur(40px);
+        }
+        
+        .hero {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: center;
             padding: 24px;
-            border-radius: 14px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, .6);
+            margin-bottom: 28px;
+            background: rgba(15, 25, 54, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
         }
-
+        
+        .hero-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, rgba(40, 201, 255, 0.15), rgba(102, 65, 255, 0.15));
+            display: grid;
+            place-items: center;
+        }
+        
         h1 {
-    text-align: center;
-    color: #fff;
-    letter-spacing: 1px;
-    text-shadow: 0 0 12px rgba(93,220,255,0.6);
-}
-
+            margin: 0;
+            font-size: clamp(2.2rem, 2vw + 1.2rem, 3.2rem);
+            letter-spacing: 0.04em;
+            color: #f8fbff;
+            text-shadow: 0 0 18px rgba(89, 214, 255, 0.28);
+        }
+        
+        .subtitle,
+        .hero-note {
+            margin: 0;
+            color: var(--muted);
+        }
+        
         .subtitle {
-            text-align: center;
-            color: #9aa4c7;
-            margin-bottom: 25px;
-            font-size: 14px;
+            margin-top: 12px;
+            font-size: 1rem;
         }
-
+        
+        .hero-note {
+            margin-top: 10px;
+            font-size: 0.96rem;
+        }
+        
         .section {
-            margin-bottom: 30px;
+            text-align: center;
+            margin-bottom: 24px;
+            padding: 22px;
+            border-radius: 22px;
+            background: rgba(10, 17, 33, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
         }
-
+        
         .section h2 {
-            font-size: 17px;
-            margin-bottom: 12px;
-            color: #5ddcff;
-            border-left: 4px solid #5ddcff;
-            padding-left: 10px;
+            font-size: 1.05rem;
+            margin-bottom: 16px;
+            color: var(--accent);
+            border-left: 4px solid var(--accent);
+            padding-left: 12px;
         }
-
+        
         .item {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            padding: 11px 8px;
-            border-bottom: 1px solid #242a3b;
-            font-size: 15px;
+            gap: 12px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s ease, background 0.2s ease;
         }
-
+        
+        .item:hover {
+            transform: translateY(-1px);
+            background: rgba(87, 200, 255, 0.08);
+        }
+        
         .item span {
-            font-weight: 600;
-            color: #fff;
+            font-weight: 700;
+            color: #f3f8ff;
         }
         
         .price-note {
             text-align: center;
-            font-size: 14px;
-            color: #cfd6ff;
+            font-size: 0.96rem;
+            color: var(--muted);
             margin-bottom: 14px;
         }
-
+        
         .pay-box {
-            background: linear-gradient(135deg, #1c2235, #151a2b);
-            text-align: center;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 14px;
-            color: #cfd6ff;
+            display: grid;
+            gap: 12px;
+            padding: 22px;
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(5, 14, 34, 0.92), rgba(11, 21, 42, 0.98));
+            color: #d3dbff;
+            border: 1px solid rgba(84, 184, 255, 0.14);
         }
-
-        .copy-btn {
-            margin-top: 10px;
-            padding: 7px 16px;
-            font-size: 13px;
-            border: none;
-            border-radius: 6px;
-            background: linear-gradient(135deg, #ffb347, #ffcc33);
-            color: #222;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .copy-btn:active {
-            transform: scale(0.95);
-        }
-
+        
+        .copy-btn,
         .btn {
-            display: block;
-            width: auto;
-            text-align: center;
-            padding: 14px;
-            margin-top: 14px;
-            background: linear-gradient(135deg, #0088cc, #00c6ff);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+        }
+        
+        .copy-btn {
+            margin-top: 8px;
+            padding: 12px 18px;
+            font-size: 0.95rem;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #f8bf57, #ffdd72);
+            color: #111827;
+            font-weight: 700;
+            box-shadow: 0 12px 20px rgba(255, 183, 71, 0.18);
+        }
+        
+        .copy-btn:hover,
+        .btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.98;
+        }
+        
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            min-width: 200px;
+            padding: 14px 18px;
+            margin: 10px 8px 0 0;
+            background: linear-gradient(135deg, #1896ff, #31d0ff);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 18px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(14, 72, 149, 0.16);
         }
-
+        
         .btn.admin {
-            background: linear-gradient(135deg, #28a745, #57d163);
+            background: linear-gradient(135deg, #2dd785, #3be598);
         }
-
+        
+        .alert {
+            text-align: center;
+            color: #bfc9f5;
+            font-size: 0.95rem;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+        
         footer {
             text-align: center;
-            color: #6f78a8;
-            font-size: 13px;
-            margin-top: 30px;
+            color: #7d88b6;
+            font-size: 0.9rem;
+            margin-top: 28px;
         }
-
-        .alert{
-            text-align: center;
+        
+        .spin {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 16px 35px rgba(0, 110, 255, 0.18);
+            cursor: pointer;
+            z-index: 999;
+            overflow: hidden;
         }
-
-        #diamond-prices {
-    max-width: 900px;
-    margin: auto;
-    font-family: Arial, sans-serif;
-}
-#diamond-prices h2 {
-    text-align: center;
-}
-.category {
-    margin-bottom: 30px;
-}
-table th {
-    background: #f5f5f5;
-}
         
-.animation {
-    animation: scrolling linear;
-    animation-timeline: view();
-    animation-range: entry 0% cover 10%;
-}
-
+        .spin::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #28d0ff, #0076ff, #00cae7);
+            animation: rotate 4s linear infinite;
+            opacity: 0.9;
+        }
         
-@keyframes scrolling {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-        scale: 0.5;
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        scale: 1;
-    }
-}
- .spin {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    cursor: pointer;
-    z-index: 999;
-    overflow: hidden;
-}
-
-/* Rotating background */
-.spin::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #23f7ec, #00c1ff, #00dad0);
-    animation: rotate 4s linear infinite;
-}
-
-/* Keep SVG fixed */
-.spin svg {
-    position: relative;
-    z-index: 2;
-    fill: white;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-        #sticker1{
-            margin: auto;
+        .spin svg {
+            position: relative;
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .hero-note,
+        .alert,
+        .price-note {
+            animation: fadeIn 0.8s ease both;
+        }
+        
+        .animation {
+            animation: fadeInUp 0.65s ease both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        input[type='number'] {
+            width: 100%;
+            max-width: 140px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            outline: none;
+        }
+        
+        input[type='number']::placeholder {
+            color: rgba(255, 255, 255, 0.55);
+        }
+        
+        @media (max-width: 740px) {
+            .container {
+                margin: 20px 16px 30px;
+                padding: 24px;
+            }
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-icon {
+                margin: 0 auto;
+            }
+            .btn {
+                width: 100%;
+            }
+            .item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .item span {
+                margin-top: 6px;
+            }
+        }
+        
+        .calculator-input {
+            width: 100%;
+            max-width: 140px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            outline: none;
+        }
+        
+        .calculator-input::placeholder {
+            color: rgba(255, 255, 255, 0.55);
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div id="sticker1" style="width:150px;height:150px;"></div>
-        <h1 style="    padding: 10px;
-    z-index: 99;
-    background: #141824;
-    position: sticky;
-    top: 0;">Xenari's SHOP</h1>
-        <p class="subtitle">Fast & Reliable Digital Services</p>
-        <p style="text-align:center; font-size:15px; color:#5ddcff; font-weight:600;">Trusted Seller • 24/7 Support ⚡
-        </p>
+        <div class="hero">
+            <div class="hero-icon">
+                <div id="sticker1" style="width:120px;height:120px;"></div>
+            </div>
+            <div style="text-align: center;">
+                <h1>Xenari's SHOP</h1>
+                <p class="subtitle">Fast & reliable digital services with honest pricing.</p>
+                <p class="hero-note">Trusted seller • 24/7 support • quick delivery</p>
+            </div>
+        </div>
 
         <div class="section">
             <div class="price-note">
@@ -240,28 +397,28 @@ table th {
             <div class="item animation">1000 Stars <span>70,000 MMK</span></div>
         </div>
 
-               <div class="section">
-    <h2>💡 Star Calculator</h2>
-    <div class="item animation">
-        Number of Stars: 
-        <input type="number" id="starInput" placeholder="Enter Stars" min="50" style="padding:6px 10px; border-radius:6px; border:none; width:100px;">
-    </div>
-    <div class="item animation">
-        Total Price: <span id="starTotal">0 MMK</span>
-    </div>
-</div>
-        
         <div class="section">
-    <h2>Premium Price</h2>
-    <div class="item animation">🎁 3 Months <span id="pre_3m">Loading...</span></div>
-    <div class="item animation">🎁 6 Months <span id="pre_6m">Loading...</span></div>
-    <div class="item animation">🎁 1 Year <span id="pre_12m">Loading...</span></div>
-</div>
+            <h2>💡 Star Calculator</h2>
+            <div class="item animation">
+                Number of Stars:
+                <input type="number" id="starInput" placeholder="Enter Stars" min="50" class="calculator-input">
+            </div>
+            <div class="item animation">
+                Total Price: <span id="starTotal">0 MMK</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Premium Price</h2>
+            <div class="item animation">🎁 3 Months <span id="pre_3m">Loading...</span></div>
+            <div class="item animation">🎁 6 Months <span id="pre_6m">Loading...</span></div>
+            <div class="item animation">🎁 1 Year <span id="pre_12m">Loading...</span></div>
+        </div>
 
         <div class="section">
             <h2>💳 Payment</h2>
             <div class="pay-box">
-               Myo Thiha Ko <br> 📱 KBZ Pay / Wave Pay (+100 MMK) / AYA Pay <br> 📞 <span id="phone">09-769211585</span><br>
+                Myo Thiha Ko <br> 📱 KBZ Pay / Wave Pay (+100 MMK) / AYA Pay <br> 📞 <span id="phone">09-769211585</span><br>
                 <button class="copy-btn" onclick="copyPhone()">📋 Copy Phone</button>
             </div>
         </div>
@@ -271,9 +428,9 @@ table th {
 
         <div class="spin">
             <a href="https://t.me/AshaRen20">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi bi-person-fill" viewBox="0 0 16 16">
-              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                </svg>
             </a>
         </div>
         <footer>© 2026 Xenari's Shop</footer>
@@ -281,14 +438,14 @@ table th {
     </div>
 
     <script>
-
-         lottie.loadAnimation({
+        lottie.loadAnimation({
             container: document.getElementById("sticker1"),
             renderer: "svg",
             loop: true,
             autoplay: true,
             path: "TgSticker_09eac552.json"
         });
+
         function copyPhone() {
             const phone = document.getElementById("phone").innerText;
             navigator.clipboard.writeText(phone).then(() => {
@@ -296,80 +453,79 @@ table th {
             });
         }
 
-const MMK_RATE = 4400;
-const PROFIT = 500;
+        const MMK_RATE = 4300;
+        const PROFIT = 500;
 
-// Premium USD prices
-const PREMIUM_USD = {
-    m3: 11.99,
-    m6: 15.99,
-    m12: 28.99
-};
+        // Premium USD prices
+        const PREMIUM_USD = {
+            m3: 11.99,
+            m6: 15.99,
+            m12: 28.99
+        };
 
-function round50(value) {
-    return Math.round(value / 50) * 50;
-}
+        function round50(value) {
+            return Math.round(value / 50) * 50;
+        }
 
-function loadTONPrice() {
-    fetch("https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd")
-        .then(res => res.json())
-        .then(data => {
-            const tonUSD = data["the-open-network"].usd;
+        function loadTONPrice() {
+            fetch("https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd")
+                .then(res => res.json())
+                .then(data => {
+                    const tonUSD = data["the-open-network"].usd;
 
-            // TON MMK with profit
-            let tonMMK = (tonUSD * MMK_RATE) + PROFIT;
-            tonMMK = round50(tonMMK);
+                    // TON MMK with profit
+                    let tonMMK = (tonUSD * MMK_RATE) + PROFIT;
+                    tonMMK = round50(tonMMK);
 
-            // Show TON info
-            document.getElementById("tonPrice").innerText = "$" + tonUSD.toFixed(2);
-            document.getElementById("ton_1").innerText = tonMMK.toLocaleString() + " MMK";
-            document.getElementById("ton_0_1").innerText =
-                round50(tonMMK * 0.1 + 50).toLocaleString() + " MMK";
-            document.getElementById("ton_10").innerText =
-                round50(tonMMK * 10).toLocaleString() + " MMK";
+                    // Show TON info
+                    document.getElementById("tonPrice").innerText = "$" + tonUSD.toFixed(2);
+                    document.getElementById("ton_1").innerText = tonMMK.toLocaleString() + " MMK";
+                    document.getElementById("ton_0_1").innerText =
+                        round50(tonMMK * 0.1 + 50).toLocaleString() + " MMK";
+                    document.getElementById("ton_10").innerText =
+                        round50(tonMMK * 10).toLocaleString() + " MMK";
 
-            // 🔥 PREMIUM CALCULATION
-            const pre3 = round50((PREMIUM_USD.m3 / tonUSD) * tonMMK) + 2000;
-            const pre6 = round50((PREMIUM_USD.m6 / tonUSD) * tonMMK) + 2000;
-            const pre12 = round50((PREMIUM_USD.m12 / tonUSD) * tonMMK) + 2000;
+                    // 🔥 PREMIUM CALCULATION
+                    const pre3 = round50((PREMIUM_USD.m3 / tonUSD) * tonMMK) + 2000;
+                    const pre6 = round50((PREMIUM_USD.m6 / tonUSD) * tonMMK) + 2000;
+                    const pre12 = round50((PREMIUM_USD.m12 / tonUSD) * tonMMK) + 2000;
 
-            document.getElementById("pre_3m").innerText = pre3.toLocaleString() + " MMK";
-            document.getElementById("pre_6m").innerText = pre6.toLocaleString() + " MMK";
-            document.getElementById("pre_12m").innerText = pre12.toLocaleString() + " MMK";
-        })
-        .catch(() => {
-            document.getElementById("tonPrice").innerText = "Unavailable";
-        });
-}
+                    document.getElementById("pre_3m").innerText = pre3.toLocaleString() + " MMK";
+                    document.getElementById("pre_6m").innerText = pre6.toLocaleString() + " MMK";
+                    document.getElementById("pre_12m").innerText = pre12.toLocaleString() + " MMK";
+                })
+                .catch(() => {
+                    document.getElementById("tonPrice").innerText = "Unavailable";
+                });
+        }
 
         loadTONPrice();
-setInterval(loadTONPrice, 30000);
+        setInterval(loadTONPrice, 30000);
 
-const unitStars = 50;
-const unitPrice = 3500; // 50 Stars = 3500 MMK
+        const unitStars = 50;
+        const unitPrice = 3500; // 50 Stars = 3500 MMK
 
-function calculateStarPrice() {
-    let input = parseInt(document.getElementById("starInput").value);
+        function calculateStarPrice() {
+            let input = parseInt(document.getElementById("starInput").value);
 
-    if (!input || input < 50) input = 50; // Minimum 50 Stars
+            if (!input || input < 50) input = 50; // Minimum 50 Stars
 
-    // Calculate base total
-    let total = (input / unitStars) * unitPrice;
+            // Calculate base total
+            let total = (input / unitStars) * unitPrice;
 
-    // Check if (input / 25) is odd
-    if ((input / 25) % 2 === 1) {
-        total += 50; // add 50 MMK
-    }
+            // Check if (input / 25) is odd
+            if ((input / 25) % 2 === 1) {
+                total += 50; // add 50 MMK
+            }
 
-    // Round total MMK to nearest 50
-    total = Math.round(total / 50) * 50;
+            // Round total MMK to nearest 50
+            total = Math.round(total / 50) * 50;
 
-    document.getElementById("starTotal").innerText = total.toLocaleString() + " MMK";
-}
+            document.getElementById("starTotal").innerText = total.toLocaleString() + " MMK";
+        }
 
-// Live update on input
-document.getElementById("starInput").addEventListener("input", calculateStarPrice);
-
+        // Live update on input
+        document.getElementById("starInput").addEventListener("input", calculateStarPrice);
     </script>
 
 </body>
